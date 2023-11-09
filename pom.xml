@@ -1,0 +1,188 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.mycompany</groupId>
+	<artifactId>testproject</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+		<quarkus.platform.group-id>
+			io.quarkus.platform</quarkus.platform.group-id>
+		<quarkus.platform.version>3.2.3.Final</quarkus.platform.version>
+		<skipITs>
+			true</skipITs>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>19</maven.compiler.source>
+		<maven.compiler.target>
+			19</maven.compiler.target>
+
+
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>${quarkus.platform.group-id}</groupId>
+				<artifactId>${quarkus.platform.artifact-id}</artifactId>
+				<version>${quarkus.platform.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-arc</artifactId>
+
+		</dependency>
+
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-hibernate-orm</artifactId>
+			<!--      <exclusions>
+      	<exclusion>
+      		<groupId>org.jboss.narayana.jta</groupId>
+      		<artifactId>narayana-jta</artifactId>
+      	</exclusion>
+      </exclusions>-->
+		</dependency>
+
+		<!--     JDBC driver dependencies -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-jdbc-mysql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-junit5</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<!--				<exclusion>
+					<groupId>org.apache.maven</groupId>
+					<artifactId>maven-embedder</artifactId>
+				</exclusion>-->
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-hibernate-validator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.10.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.laboklin</groupId>
+			<artifactId>labocommon-businessobjects</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.laboklin</groupId>
+			<artifactId>laboutil-core-utility</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.laboklin</groupId>
+			<artifactId>labocommon-services</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.slf4j</groupId>
+			<artifactId>slf4j-jboss-logmanager</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<sourceDirectory>
+			src/main/java/com.mycompany.testproject</sourceDirectory>
+		<testSourceDirectory>
+			src/test/java/com.mycompany.testproject</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>
+					src/main/resources/com.mycompany.testproject</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>
+					src/test/resources/com.mycompany.testproject</directory>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<!-- <compilerArgs>
+						<arg>patch-module</arg>
+						<arg>
+					org.slf4j=${settings.localRepository}/org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.jar</arg>
+					</compilerArgs> -->
+					<fork>true</fork>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-testCompile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
